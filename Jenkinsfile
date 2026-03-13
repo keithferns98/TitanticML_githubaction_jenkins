@@ -14,17 +14,17 @@ pipeline{
         stage("Stop Existing Container"){
             steps{
                 bat '''
-                docker stop %CONTAINER% || true
-                docker rm %CONTAINER% || true
+                docker stop %CONTAINER% 2>nul
+                docker rm %CONTAINER% 2>nul
                 '''
             }
         }
         stage("Run Container"){
             steps{
                 bat '''
-                docker run -d \
-                -p %PORT%:%PORT% \
-                --name %CONTAINER% \
+                docker run -d ^
+                -p %PORT%:%PORT% ^
+                --name %CONTAINER% ^
                 %IMAGE%
                 '''
             }
