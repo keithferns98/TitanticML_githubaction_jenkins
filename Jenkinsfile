@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        IMAGE = "keithfernandes/titanic-api:latest"
+        IMAGE = "keith311/titanic-api:latest"
         CONTAINER = "titanic-api2"
         PORT = "8000"
     }
