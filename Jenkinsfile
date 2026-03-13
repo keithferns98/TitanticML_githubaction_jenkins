@@ -8,14 +8,14 @@ pipeline{
     stages{
         stage("Pull Docker Image."){
             steps{
-                sh 'docker pull $IMAGE'
+                bat 'docker pull %IMAGE%'
             }
         }
         stage("Stop Existing Container"){
             steps{
                 sh '''
-                docker stop $CONTAINER || true
-                docker rm $CONTAINER || true
+                docker stop %CONTAINER% || true
+                docker rm %CONTAINER% || true
                 '''
             }
         }
@@ -23,9 +23,9 @@ pipeline{
             steps{
                 sh '''
                 docker run -d \
-                -p $PORT:$PORT \
-                --name $CONTAINER \
-                $IMAGE
+                -p %PORT%:%PORT% \
+                --name %CONTAINER% \
+                %IMAGE%
                 '''
             }
         }
